@@ -7,27 +7,38 @@ struct node
 	struct node *next;
 };
 
-// creating Linked List
-struct node *start = NULL;
+struct node *head = NULL;
+struct node *tail = NULL;
+
 struct node *createLL(int val)
 {
-	struct node *last = NULL;
-	struct node* newnode = new node;
+	struct node *newnode = new node;
 	newnode -> data = val;
-	newnode ->next = NULL;
-	if(start == NULL)
+	newnode -> next = NULL;
+	if(head == NULL)
 	{
-		start->next = newnode;
-		last = start;
+		head = newnode;
+		tail = newnode;
 	}
 	else
 	{
-		last->next = newnode;
-		last = last -> next;
+		tail -> next = newnode;
+		tail = tail -> next;
 	}
 }
 
-//main
+int lengthLL()
+{
+	int lenght = 0;
+	struct node *ptr = head;
+	while(ptr != NULL)
+	{
+		lenght++;
+		ptr = ptr -> next;
+	}
+	return lenght;	
+}
+
 int main (void)
 {
 	int n,val;
@@ -35,6 +46,7 @@ int main (void)
 	while(n--)
 	{
 		cin>>val;
-		createLL(val)
+		createLL(val);
 	}
+	cout<<lengthLL()<<endl;
 }
